@@ -1,0 +1,7 @@
+---
+
+- name: start-firewall
+  shell: "{{ openwisp2_iptables_script }}"
+
+- name: iptables-save
+  shell: iptables-save > /etc/iptables/rules.v4

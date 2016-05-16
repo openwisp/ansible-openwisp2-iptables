@@ -1,0 +1,5 @@
+openwisp2_iptables_ssh_port: 22
+openwisp2_iptables_vpn: false
+openwisp2_iptables_vpn_interface: "vpn"
+openwisp2_iptables_vpn_port: 1194
+openwisp2_iptables_script: /etc/openwisp-firewall.sh

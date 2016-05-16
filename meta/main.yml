@@ -1,0 +1,20 @@
+---
+
+dependencies: []
+
+galaxy_info:
+  author: nemesisdesign
+  description: iptables rules to protect an openwisp2 instance
+  license: BSD
+  platforms:
+  - name: Debian
+    versions:
+    - wheezy
+    - jessie
+  - name: Ubuntu
+    versions:
+    - trusty
+    - xenial
+  categories:
+    - system
+    - networking
