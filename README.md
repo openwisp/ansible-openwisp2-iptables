@@ -1,7 +1,9 @@
 ansible-openwisp2-iptables
 ==========================
 
-iptables rules to protect an openwisp2 instance (see [ansible-openwisp2](https://github.com/nemesisdesign/ansible-openwisp2)) on **debian** and **ubuntu** systems.
+[![Galaxy](https://img.shields.io/badge/galaxy-nemesisdesign.openwisp2--iptables-blue.svg?style=flat-square)](https://galaxy.ansible.com/nemesisdesign/openwisp2-iptables/)
+
+Ansible role that sets iptables firewall rules to protect an openwisp2 instance (see [ansible-openwisp2](https://github.com/nemesisdesign/ansible-openwisp2)) on **debian** and **ubuntu** systems.
 
 Usage
 =====
