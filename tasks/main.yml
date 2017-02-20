@@ -1,12 +1,19 @@
 ---
 
 - name: Install system packages
-  apt: name={{ item }} state=latest
+  apt:
+    name: "{{ item }}"
+    state: latest
   tags: [apt, openwisp2, iptables]
   with_items:
     - iptables-persistent
 
 - name: Copy firewall init script into place.
-  template: src=firewall.sh dest={{ openwisp2_iptables_script }} owner=root group=root mode=0755
+  template:
+    src: firewall.sh
+    dest: "{{ openwisp2_iptables_script }}"
+    owner: root
+    group: root
+    mode: 0755
   notify: [start-firewall]
   tags: [openwisp2, iptables]
