@@ -17,3 +17,10 @@
     mode: 0755
   notify: [start-firewall, iptables-save]
   tags: [openwisp2, iptables]
+
+- name: Ensure firewall is active
+  shell: iptables -L -v | wc -l
+  register: iptables_check
+  changed_when: iptables_check.stdout|int < 10
+  notify: [start-firewall]
+  tags: [openwisp2, iptables]
