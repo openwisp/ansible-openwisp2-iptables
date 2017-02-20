@@ -34,6 +34,10 @@ iptables -A INPUT -p tcp --dport {{ openwisp2_iptables_ssh_port }} -j ACCEPT  # 
 iptables -A INPUT -p tcp --dport 80 -j ACCEPT  # web
 iptables -A INPUT -p tcp --dport 443 -j ACCEPT  # web-ssl
 
+# allow ICMP and traceroute
+iptables -A OUTPUT -p icmp -j ACCEPT
+iptables -A OUTPUT -p udp --dport 33434:33524 -m state --state NEW -j ACCEPT
+
 {% if openwisp2_iptables_vpn %}
 # vpn specific
 iptables -A INPUT -p udp --dport {{ openwisp2_iptables_vpn_port }} -j ACCEPT
