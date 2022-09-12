@@ -38,13 +38,47 @@ iptables -A INPUT -p tcp --dport 443 -j ACCEPT  # web-ssl
 iptables -A OUTPUT -p icmp -j ACCEPT
 iptables -A OUTPUT -p udp --dport 33434:33524 -m state --state NEW -j ACCEPT
 
-{% if openwisp2_iptables_vpn %}
-# vpn specific
-iptables -A INPUT -p udp --dport {{ openwisp2_iptables_vpn_port }} -j ACCEPT
-iptables -A OUTPUT -o {{ openwisp2_iptables_vpn_interface }} -j ACCEPT  # vpn
+# rules for VPN servers
+{% for rule in openwisp2_iptables_vpn_rules %}
+iptables -A INPUT -p {{ rule.protocol }} --dport {{ rule.port }} -j ACCEPT
+iptables -A OUTPUT -o {{ rule.interface }} -j ACCEPT  # vpn
 # allow ICMP on vpn interface
-iptables -A INPUT -p icmp -i {{ openwisp2_iptables_vpn_interface }} -j ACCEPT
-iptables -A OUTPUT -p icmp -o {{ openwisp2_iptables_vpn_interface }} -j ACCEPT
+iptables -A INPUT -p icmp -i {{ rule.interface }} -j ACCEPT
+iptables -A OUTPUT -p icmp -o {{ rule.interface }} -j ACCEPT
+# deny internet traffic through management tunnel
+iptables -A FORWARD -p all -i {{ rule.interface }} -j DROP
+{% endfor %}
+
+{% if openwisp2_iptables_iperf_port %}
+# open port for Iperf3 server
+iptables -A INPUT -p tcp --dport {{ openwisp2_iptables_iperf_port }} -j ACCEPT
+iptables -A INPUT -p udp --dport {{ openwisp2_iptables_iperf_port }} -j ACCEPT
+iptables -A OUTPUT -p tcp --dport {{ openwisp2_iptables_iperf_port }} -j ACCEPT
+iptables -A OUTPUT -p udp --dport {{ openwisp2_iptables_iperf_port }} -j ACCEPT
+{% endif %}
+
+{% if openwisp2_iptables_owlp_internet_mode_port %}
+# open port for OWLP internet mode
+iptables -A INPUT -p tcp --dport {{ openwisp2_iptables_owlp_internet_mode_port }} -j ACCEPT
+iptables -A INPUT -p udp --dport {{ openwisp2_iptables_owlp_internet_mode_port }} -j ACCEPT
+{% endif %}
+
+{% for port in openwisp2_iptables_freeradius_ports %}
+# open ports for FreeRADIUS
+iptables -A INPUT -p udp --dport {{ port }} -j ACCEPT
+iptables -A OUTPUT -p udp --dport {{ port }} -j ACCEPT
+{% endfor %}
+
+{% for port in openwisp2_iptables_smtp_ports %}
+# open ports for SMTP
+iptables -A INPUT -p tcp --dport {{ port }} -j ACCEPT
+iptables -A OUTPUT -p tcp --dport {{ port }} -j ACCEPT
+{% endfor %}
+
+{% if openwisp2_iptables_wireguard_flask_port %}
+# open port for WireGuard Flask app
+iptables -A INPUT -p tcp --dport {{ openwisp2_iptables_wireguard_flask_port }} -j ACCEPT
+iptables -A OUTPUT -p tcp --dport {{ openwisp2_iptables_wireguard_flask_port }} -j ACCEPT
 {% endif %}
 
 {% if openwisp2_iptables_additional_rules %}

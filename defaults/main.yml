@@ -1,5 +1,9 @@
 openwisp2_iptables_ssh_port: 22
-openwisp2_iptables_vpn: false
-openwisp2_iptables_vpn_interface: "vpn"
-openwisp2_iptables_vpn_port: 1194
 openwisp2_iptables_script: /etc/openwisp-firewall.sh
+openwisp2_iptables_vpn_rules: []
+openwisp2_iptables_iperf_port: null
+openwisp2_iptables_owlp_internet_mode_port: null
+openwisp2_iptables_smtp_ports: []
+openwisp2_iptables_freeradius_ports: []
+openwisp2_iptables_wireguard_flask_port: null
+openwisp2_iptables_additional_rules: []

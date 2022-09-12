@@ -3,9 +3,13 @@
 dependencies: []
 
 galaxy_info:
-  author: nemesisdesign
+  role_name: openwisp2-iptables
+  namespace: openwisp
+  author: Federico Capoano
+  company: OpenWISP
   description: iptables rules to protect an openwisp2 instance
   license: BSD
+  min_ansible_version: "2.10"
   platforms:
   - name: Debian
     versions:
@@ -15,6 +19,7 @@ galaxy_info:
     versions:
     - trusty
     - xenial
-  categories:
+  galaxy_tags:
     - system
     - networking
+    - openwisp
