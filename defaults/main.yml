@@ -5,5 +5,7 @@ openwisp2_iptables_iperf_port: null
 openwisp2_iptables_owlp_internet_mode_port: null
 openwisp2_iptables_smtp_ports: []
 openwisp2_iptables_freeradius_ports: []
+openwisp2_iptables_freeradius_destination: ''
+openwisp2_iptables_wireguard_flask_src_ips: []
 openwisp2_iptables_wireguard_flask_port: null
 openwisp2_iptables_additional_rules: []

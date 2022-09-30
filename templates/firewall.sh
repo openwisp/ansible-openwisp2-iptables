@@ -65,7 +65,7 @@ iptables -A INPUT -p udp --dport {{ openwisp2_iptables_owlp_internet_mode_port }
 
 {% for port in openwisp2_iptables_freeradius_ports %}
 # open ports for FreeRADIUS
-iptables -A INPUT -p udp --dport {{ port }} -j ACCEPT
+iptables -A INPUT -p udp --destination {{ openwisp2_iptables_freeradius_destination }} --dport {{ port }} -j ACCEPT
 iptables -A OUTPUT -p udp --dport {{ port }} -j ACCEPT
 {% endfor %}
 
@@ -77,8 +77,8 @@ iptables -A OUTPUT -p tcp --dport {{ port }} -j ACCEPT
 
 {% if openwisp2_iptables_wireguard_flask_port %}
 # open port for WireGuard Flask app
-iptables -A INPUT -p tcp --dport {{ openwisp2_iptables_wireguard_flask_port }} -j ACCEPT
-iptables -A OUTPUT -p tcp --dport {{ openwisp2_iptables_wireguard_flask_port }} -j ACCEPT
+iptables -A INPUT -p tcp --source {{ openwisp2_iptables_wireguard_flask_src_ips | join(',') }} --dport {{ openwisp2_iptables_wireguard_flask_port }} -j ACCEPT
+iptables -A OUTPUT -p tcp --destination {{ openwisp2_iptables_wireguard_flask_src_ips | join(',') }} --dport {{ openwisp2_iptables_wireguard_flask_port }} -j ACCEPT
 {% endif %}
 
 {% if openwisp2_iptables_additional_rules %}

@@ -33,6 +33,11 @@ Usage
     openwisp2_iptables_smtp_ports: [25, 587]
     # Configure ports to allow traffic for the FreeRADIUS server
     openwisp2_iptables_freeradius_ports: [1812, 1813]
+    # Destination IP for incoming FreeRADIUS traffic
+    openwisp2_iptables_freeradius_destination: 10.8.0.1
+    # Configure IP addresses that would be allowed to send traffic
+    # to WireGuard updater Flask app
+    openwisp2_iptables_wireguard_flask_src_ips: []
     # Configure port to allow traffic for the WireGuard updater
     # Flask app
     openwisp2_iptables_wireguard_flask_port: 8081
