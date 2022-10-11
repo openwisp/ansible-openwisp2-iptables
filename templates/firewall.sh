@@ -23,7 +23,7 @@ iptables -A OUTPUT -o lo -j ACCEPT
 # output (general)
 iptables -A OUTPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
 iptables -A OUTPUT -p udp --dport 53 -j ACCEPT  # dns
-iptables -A OUTPUT -p tcp --dport 22 -j ACCEPT  # ssh
+iptables -A OUTPUT -p tcp --dport {{ openwisp2_iptables_ssh_port }} -j ACCEPT  # ssh
 iptables -A OUTPUT -p tcp --dport 80 -j ACCEPT  # web
 iptables -A OUTPUT -p tcp --dport 443 -j ACCEPT  # web-ssl
 iptables -A OUTPUT -p tcp --dport 9418 -j ACCEPT  # git
