@@ -64,8 +64,10 @@ iptables -A INPUT -p udp --dport {{ openwisp2_iptables_owlp_internet_mode_port }
 {% endif %}
 
 {% for port in openwisp2_iptables_freeradius_ports %}
+{% for ip_address in openwisp2_iptables_freeradius_destinations %}
 # open ports for FreeRADIUS
-iptables -A INPUT -p udp --destination {{ openwisp2_iptables_freeradius_destination }} --dport {{ port }} -j ACCEPT
+iptables -A INPUT -p udp --destination {{ ip_address }} --dport {{ port }} -j ACCEPT
+{% endfor %}
 iptables -A OUTPUT -p udp --dport {{ port }} -j ACCEPT
 {% endfor %}
 
