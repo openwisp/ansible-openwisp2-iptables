@@ -32,8 +32,12 @@ iptables -A OUTPUT -p tcp --dport 9418 -j ACCEPT  # git
 # input (general)
 iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
 iptables -A INPUT -p tcp --dport {{ openwisp2_iptables_ssh_port }} -j ACCEPT  # ssh
+{% if openwisp2_iptables_input_http %}
 iptables -A INPUT -p tcp --dport 80 -j ACCEPT  # web
-iptables -A INPUT -p tcp --dport 443 -j ACCEPT  # web-ssl
+{% endif %}
+{% if openwisp2_iptables_input_https %}
+iptables -D INPUT -p tcp --dport 443 -j ACCEPT  # web-ssl
+{% endif %}
 
 # allow ICMP and traceroute
 iptables -A OUTPUT -p icmp -j ACCEPT

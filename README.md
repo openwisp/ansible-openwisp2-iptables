@@ -49,6 +49,10 @@ Usage
     openwisp2_iptables_owlp_internet_mode_port: null
     # Configure additional iptables rule using the following variable
     openwisp2_iptables_additional_rules: []
+    # Allow input HTTP traffic
+    openwisp2_iptables_input_http: true
+    # Allow input HTTPS traffic
+    openwisp2_iptables_input_https: true
 ```
 
 **Note:** By default, all incoming traffic is dropped except
