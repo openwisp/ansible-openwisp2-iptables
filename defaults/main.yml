@@ -9,3 +9,5 @@ openwisp2_iptables_freeradius_destinations: []
 openwisp2_iptables_wireguard_flask_src_ips: []
 openwisp2_iptables_wireguard_flask_port: null
 openwisp2_iptables_additional_rules: []
+openwisp2_iptables_input_http: true
+openwisp2_iptables_input_https: true
