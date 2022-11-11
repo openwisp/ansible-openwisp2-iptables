@@ -36,7 +36,7 @@ iptables -A INPUT -p tcp --dport {{ openwisp2_iptables_ssh_port }} -j ACCEPT  # 
 iptables -A INPUT -p tcp --dport 80 -j ACCEPT  # web
 {% endif %}
 {% if openwisp2_iptables_input_https %}
-iptables -D INPUT -p tcp --dport 443 -j ACCEPT  # web-ssl
+iptables -A INPUT -p tcp --dport 443 -j ACCEPT  # web-ssl
 {% endif %}
 
 # allow ICMP and traceroute
